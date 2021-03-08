@@ -3,5 +3,8 @@ from django.http import HttpResponse
 # Create your views here.
 
 
-def my_class(request):
-    return HttpResponse("My class from classroom")
+def classroom_quantity(request):
+    return HttpResponse("There are seven classroom in the school")
+
+def classroom_availabilty(request):
+    return HttpResponse("Your classroom is ready to conquer")
