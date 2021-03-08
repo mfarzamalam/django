@@ -15,7 +15,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from first import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', views.index),                   # To resolve the 404 error
+    path('django/', views.learn_django),
+    path('python/', views.learn_python),
+    path('user/', views.welcome_user),
 ]
