@@ -3,7 +3,7 @@ from django.http import HttpResponse
 # Create your views here.
 
 def learn_django(request):
-    return render(request,'courseD.html')
+    return render(request,'course/courseD.html')
 
 def learn_python(request):
-    return render(request,'courseP.html')
+    return render(request,'course/courseP.html')
