@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Django Template Language || if else and elif</title>
+</head>
+<body>
+        {% if football == 'yes'%}
+            <h2> Yes, Today there is a football match</h2>
+            <h3> {{t1}} vs {{t2}} </h3>
+            <h3> and the round is {{roundNum}} </h3>
+
+        {% elif football == 'no'%}
+            <h2> No matches of football today</h2>
+        
+        {% else %}
+            <h1> We'll keep you posted as soon as we know </h1>
+        {% endif %}
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Django Template Language || for-loop </title>
+    <style>
+        body{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    
+    <h3>Looping through dictionaries</h3>
+
+    {% for id,other_details in d_students.items %}
+         Name: {{other_details.name|upper}} , <br>Age: {{other_details.age}} <br><br>
+    {% endfor %}
+
+
+    <h3>Looping through List</h3>
+
+    {% for i in l_students %}
+        {{i}} <br>
+    {% endfor %}
+</body>
+</html>
