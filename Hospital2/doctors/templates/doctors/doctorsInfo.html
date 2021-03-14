@@ -1,0 +1,13 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block corecss %}
+    {{block.super}}
+    <link rel="stylesheet" href=" {% static 'doctors/css/style.css' %}">
+{% endblock corecss %}
+
+{% block title %}Doctors{% endblock title %}
+
+{% block doctorsA %}active{% endblock doctorsA %}
+
+{% block mainC %}I am from doctors Page{% endblock mainC %}
