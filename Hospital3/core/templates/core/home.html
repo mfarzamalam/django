@@ -1,0 +1,19 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}Home Page{% endblock title %}
+
+
+{% block mainC %}
+    {{ block.super }}
+    to Home
+{% endblock mainC %}
+
+{% block second %}
+    <button type="button" class="btn btn-primary">Bootstrap is working</button>
+
+    {% include 'core/offer.html' %}
+
+    {% include 'core/offer.html' with b='brawn' only %}
+
+{% endblock second %}

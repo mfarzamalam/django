@@ -1,0 +1,10 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}Nurse Page{% endblock title %}
+
+{% block mainC %} {{ block.super }} to Nurse{% endblock mainC %}
+
+{% block second %}
+    There are {{num}} numbers of nurse required in the hospital
+{% endblock second %}
