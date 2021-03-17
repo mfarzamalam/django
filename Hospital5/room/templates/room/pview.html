@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    {% if p %}
+        {% for value in p %}
+            Id: {{value.p_id}}<br>
+            Name : {{value.p_name}}<br>
+            Email: {{value.p_email}}<br>
+            Password: {{value.p_pass}}<br>
+            <br>
+        {% endfor %}
+            
+        {% comment %} If you want only one data {% endcomment %}
+
+        {% comment %} Id: {{p.p_id}}<br>
+        Name : {{p.p_name}}<br>
+        Email: {{p.p_email}}<br>
+        Password: {{p.p_pass}}<br>
+        <br> {% endcomment %}
+
+    {% else %}
+        <p>No data</p>
+    {% endif %}
+    
+</body>
+</html>
