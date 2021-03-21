@@ -41,6 +41,19 @@
             6){{form.name.help_text}}<br>
             7){{form.name.field.required}}<br>
         </div>
+
+        <h3>Looping through the field</h3>
+            <h4>show only visible fields</h4>
+            {% for field in form.visible_fields %}
+                {{field.label_tag}} <br>
+            {% endfor %}
+            
+            <br>
+
+            <h4>show only hidden fields</h4>
+            {% for field in form.hidden_fields %}
+                {{field.label_tag}} <br>
+            {% endfor %}
     </form>    
 
 </body>
