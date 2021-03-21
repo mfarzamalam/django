@@ -9,5 +9,7 @@ def showRegisterStaff(request):
     rs3 = RegisterStaff(auto_id=False)
     rs4 = RegisterStaff(auto_id=False, label_suffix='--')
     rs5 = RegisterStaff(auto_id=False, label_suffix='=', initial={ 'name':'firstname secondname', 'email':'some@mail.com' })
-
-    return render(request, 'staff/staffRegister.html', {'form':rs5})
+    
+    rs.order_fields(field_order=['email','address'])
+    
+    return render(request, 'staff/staffRegister.html', {'form':rs})
