@@ -1,7 +1,5 @@
 from django import forms
 
 class RegisterStaff(forms.Form):
-    name = forms.CharField(initial='your name', help_text='only 30 charaters allowed')
-    email = forms.EmailField()
-    password = forms.CharField()
-    address = forms.CharField(widget=forms.HiddenInput())
+    name = forms.CharField(label='Your Name', label_suffix='--', initial='My name', required=False,
+                            disabled=True, help_text='70 characters allowed!')

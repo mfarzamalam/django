@@ -5,55 +5,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Staff Registration</title>
+
+    <style>
+        .helptext{
+            color:red;
+        }
+    </style>
 </head>
 <body>
 
     <form action="" method="get">
-
-        <h3>In paragraph Tag</h3>
-            {{form.as_p}}   
-                <br>
-
-        <h3>In ul Tag</h3>
-            {{form.as_ul}}   
-                <br>
-
-        <h3>Show only one field or selective field</h3>
-            NAME: {{form.name}}   
-
-        <input type="submit" value="submit">
-
-                <br>
-        <h3>Dynamic field for label</h3>
-        <div>
-            <label for="{{form.name.id_for_label}}">Name: </label>
-            <input type="text" name="name" required id="id_name">
-        </div>
-
-                <br>
-        <h3>Dynamic field for both</h3>
-        <div>
-            1){{form.name.label_tag}} <br>
-            2){{form.name}}<br>
-            3){{form.name.label}}<br>
-            4){{form.name.value}}<br>
-            5){{form.name.html_name}}<br>
-            6){{form.name.help_text}}<br>
-            7){{form.name.field.required}}<br>
-        </div>
-
-        <h3>Looping through the field</h3>
-            <h4>show only visible fields</h4>
-            {% for field in form.visible_fields %}
-                {{field.label_tag}} <br>
-            {% endfor %}
-            
-            <br>
-
-            <h4>show only hidden fields</h4>
-            {% for field in form.hidden_fields %}
-                {{field.label_tag}} <br>
-            {% endfor %}
+        {{form.as_p}}
     </form>    
 
 </body>
