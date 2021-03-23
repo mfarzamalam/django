@@ -1,7 +1,11 @@
 from django.shortcuts import render
 from .forms import staffRegister
+from django.http import HttpResponseRedirect
 
 # Create your views here.
+def success(request):
+    return render(request, 'staff/success.html')
+
 def showStaffData(request):
     if request.method == 'POST':
         showData = staffRegister(request.POST)
@@ -14,7 +18,10 @@ def showStaffData(request):
             print("Email:",email)
             print("Password:",email)
 
-            showData = staffRegister()
+            return HttpResponseRedirect('/r/s')
+                      # Or
+            # return HttpResponseRedirect('s')
+
     else:
         showData = staffRegister()
         print("Empty Empty")
