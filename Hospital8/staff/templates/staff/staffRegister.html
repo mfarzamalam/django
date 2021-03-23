@@ -6,9 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Staff Registration</title>
 </head>
-<body>
-    <form action="" method="post">
-        {% csrf_token %}
+<body>            {% comment %}  used to disable the html validation {% endcomment %}
+    <form action="" method="POST" novalidate>
+        {% csrf_token %}           
         {{form.as_p}}
         <input type="submit" value="Submit">
 
