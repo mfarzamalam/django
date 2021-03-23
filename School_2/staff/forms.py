@@ -1,27 +1,21 @@
+from django.core import validators
 from django import forms
 
+def starts_with_s(value):
+    letter = "q"
+    if value[0].lower() != letter:
+        raise forms.ValidationError('Name should start with '+letter.upper())
+
 class staffRegister(forms.Form):
-    name = forms.CharField()
-    email = forms.EmailField()
+    # name = forms.CharField(validators=[validators.MaxLengthValidator(10)])
+    # name2 = forms.CharField(validators=[starts_with_s])
+    password = forms.CharField(widget=forms.PasswordInput)
+    rePassword = forms.CharField( label='Re-enter Password',widget=forms.PasswordInput)
 
-        # Custom validation for single field
-    # def clean_name(self):
-    #     clean_name_data = self.cleaned_data['name']
-
-    #     if len(clean_name_data) < 5:
-    #         raise forms.ValidationError("Enter more than 5 character")
-    #     else:
-    #         return clean_name_data
-
-
-        # Custom validation for whole form
     def clean(self):
         cleaned_data = super().clean()
-        cname = self.cleaned_data['name']
-        cemail = self.cleaned_data['email']
+        p1 = self.cleaned_data['password']
+        p2 = self.cleaned_data['rePassword']
 
-        if len(cname) < 5:
-            raise forms.ValidationError('Name should not be less than or equal to 5')
-
-        if len(cemail) < 15:
-            raise forms.ValidationError('Email should not be less than or equal to 15')
+        if p1 != p2:
+            raise forms.ValidationError("Password doesnot match")

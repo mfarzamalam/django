@@ -6,11 +6,13 @@ def showStaffData(request):
     if request.method == 'POST':
         showData = staffRegister(request.POST)
         if showData.is_valid():
-            name = showData.cleaned_data['name']
-            email = showData.cleaned_data['email']
+            # name = showData.cleaned_data['name2']
+            p1 = showData.cleaned_data['password']
+            p2 = showData.cleaned_data['rePassword']
 
-            print("Name:",name)
-            print("Email:",email)
+            # print("Name:",name)
+            print("Password:",p1)
+            print("Re-enter Password:",p2)
 
     else:
         showData = staffRegister()
