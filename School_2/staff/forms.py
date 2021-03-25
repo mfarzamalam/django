@@ -7,15 +7,10 @@ def starts_with_s(value):
         raise forms.ValidationError('Name should start with '+letter.upper())
 
 class staffRegister(forms.Form):
+    error_css_class = 'error_css'
+    required_css_class = 'require_css'
+
     # name = forms.CharField(validators=[validators.MaxLengthValidator(10)])
-    # name2 = forms.CharField(validators=[starts_with_s])
-    password = forms.CharField(widget=forms.PasswordInput)
-    rePassword = forms.CharField( label='Re-enter Password',widget=forms.PasswordInput)
-
-    def clean(self):
-        cleaned_data = super().clean()
-        p1 = self.cleaned_data['password']
-        p2 = self.cleaned_data['rePassword']
-
-        if p1 != p2:
-            raise forms.ValidationError("Password doesnot match")
+    name2 = forms.CharField(error_messages={'required':'Enter your Name'})
+    email = forms.EmailField(error_messages={'required':'Enter your Email'}, min_length=10)
+    password = forms.CharField(widget=forms.PasswordInput, error_messages={'required':'Enter your Password'})
