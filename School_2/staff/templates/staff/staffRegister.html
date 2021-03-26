@@ -5,36 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Staff Registration</title>
-    <style>
-        .errorlist{
-            color:red;
-            padding:0;
-            font-size:10px;
-            margin:0;
-        }
-    </style>
 </head>
-<body>            {% comment %}  used to disable the html validation {% endcomment %}
+<body>            
+    
+    {% comment %} novalidate used to disable the html validation {% endcomment %}
     <form action="" method="POST" novalidate>
         {% csrf_token %}           
-            {% comment %} {{form.non_field_errors}} {% endcomment %}
-                
-{% comment %} How to show error separately with custom Css {% endcomment %}
-                
-                {% comment %} {% for field in form %}
-                    <div>
-                        {{field.label_tag}} {{field}} 
-
-                        {% for error in field.errors %}
-                            <span class="errorlist">{{error|striptags}}</span>
-                        {% endfor %}
-                    </div>
-                {% endfor %} {% endcomment %}
-
-            {{form}}
+        {{form.as_p}}
 
         <input type="submit" value="Submit">
-
     </form>
     
 </body>

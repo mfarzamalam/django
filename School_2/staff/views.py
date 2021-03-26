@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .forms import staffRegister
+from .models import User
 
 # Create your views here.
 def showStaffData(request):
@@ -10,10 +11,8 @@ def showStaffData(request):
             email = showData.cleaned_data['email']
             password = showData.cleaned_data['password']
 
-            print("Name:",name)
-            print("Email:",email)
-            print("Password:",password)
-
+            reg = User(name=name, email=email, password=password)
+            reg.save()
     else:
         showData = staffRegister()
 
