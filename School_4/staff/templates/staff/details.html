@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show Details</title>
+</head>
+<body>
+
+    {% if sub_id == None %}
+        
+        <h2>{{id}}</h2>
+        <h2>{{name}}</h2>
+        <h3>Detail Page</h3>
+
+    {% else %}
+        
+        <h2>{{id}} | {{sub_id}}</h2>
+        <h2>{{name}}</h2>
+        <h3>Sub Detail Page</h3>
+
+    {% endif %}
+    
+    <a href="{% url 'home' %}">Home Page</a>
+
+</body>
+</html>
