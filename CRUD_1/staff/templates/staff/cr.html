@@ -1,0 +1,58 @@
+{% extends 'staff/base.html' %}
+
+{% block content %}
+
+   <div class="row">
+        <div class="col-sm-4">
+             <h4 class="text-center alert alert-info">Add New Student</h4>
+ 
+            <form action="" method="POST" novalidate>
+                 {% csrf_token %}
+                 {{form.as_p}}
+                <input type="submit" value="Add" class="btn btn-success">
+            </form>
+            
+        </div>
+
+        <div class="col-sm-7 offset-1">
+               <h4 class="text-center alert alert-info">All Student Information</h4>
+               {% if views %}
+                    <table class="table table-hover">
+                         <thead>
+                              <tr>
+                                   <th scope="col">ID</th>
+                                   <th scope="col">Name</th>
+                                   <th scope="col">Email</th>
+                                   <th scope="col">Password</th>
+                                   <th scope="col">Actions</th>
+                              </tr>
+                         </thead>
+                         <tbody>
+                              {% for view in views %}
+                                   <tr>
+                                        <th scope="row">{{view.id}}</th>
+                                        <td>{{view.name}}</td>
+                                        <td>{{view.email}}</td>
+                                        <td>{{view.password}}</td>
+                                        <td> <a href="{% url 'editData' view.id %}" class="btn btn-warning btn-sm">Edit</a></td>
+                                        <td> <a href="{% url 'deleteData' view.id %}" class="btn btn-danger btn-sm">Delete</a></td>
+                                       
+                                        {% comment %} <td>
+                                             <form action="{% url 'deleteData' view.id %}" method="POST" class="d-inline">
+                                                  {% csrf_token %}
+                                                  <input type="submit" value="delete" class="btn btn-danger">
+                                             </form>
+                                        </td> {% endcomment %}
+                                   </tr>
+                              {% endfor %}
+                         </tbody>
+                    </table>
+               {% else %}
+                    <h4 class="text-center alert alert-warning">No Data Found</h4>
+               {% endif %}
+
+        </div>
+
+   </div>
+
+{% endblock content %}
