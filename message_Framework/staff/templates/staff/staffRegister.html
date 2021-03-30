@@ -5,6 +5,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        .success{
+            color:green;
+        }
+
+        .info{
+            color:blue;
+        }
+
+        .debug{
+            color:red;
+        }
+    </style>
 </head>
 <body>
     
@@ -13,5 +26,21 @@
         {{form.as_p}}
         <input type="submit" value="Submit">
     </form>
+
+    {% if messages %}
+        {% for message in messages %}
+            {% if message.tags == 'success' %}
+                <h4 class="{{message.tags}}">{{message|upper}}</h4>
+            {% endif %}
+
+            {% if message.tags == 'info' %}
+                <h4 class="{{message.tags}}">{{"informationaly added"|upper}}</h4>
+            {% endif %}
+
+            {% if message.tags == 'debug' %}
+                <h4 class="{{message.tags}}">{{message|upper}}</h4>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
 </body>
 </html>
