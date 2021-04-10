@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Login</title>
+    <style>
+        .error2{
+            color:red;
+        }
+    </style>
+</head>
+<body>
+
+        <form action="" method="POST" novalidate>
+            {% csrf_token %}
+
+            {% comment %} Show form with username and password {% endcomment %}
+            {% for fm in form %}
+                {{fm.label_tag}} {{fm}} {{fm.errors|striptags}} <br><br>
+            {% endfor %}
+            {% comment %} END {% endcomment %}
+
+
+            <input type="submit" value="Login">
+
+
+            {% comment %} Show error if username or password is not correct {% endcomment %}
+            {% if form.non_field_errors %}
+                {% for error in form.non_field_errors %}
+                    <p class="error2">{{error}}</p>
+                {% endfor %}
+            {% endif %}
+            {% comment %} END {% endcomment %}
+
+        </form>
+            <br><a href=" {% url 'signup' %} ">Sign Up</a>
+</body>
+</html>
