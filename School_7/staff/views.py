@@ -26,7 +26,7 @@ def sign_up(request):
 def user_login(request):
     if request.user.is_authenticated:
         
-        return HttpResponseRedirect('profile')
+        return HttpResponseRedirect('dashboard')
     else:
         if request.method == 'POST':
             fm = AuthenticationForm(request=request, data=request.POST)
@@ -39,7 +39,7 @@ def user_login(request):
                 if userLogin is not None:
                     login(request, userLogin)
                     messages.success(request, 'Login Successfully!')
-                    return HttpResponseRedirect('profile')
+                    return HttpResponseRedirect('dashboard')
 
         else:        
             fm = AuthenticationForm()
@@ -47,74 +47,16 @@ def user_login(request):
     return render(request, 'staff/userLogin.html',{'form':fm})
 
 
-def user_profile(request):
+def user_dashboard(request):
     
     if request.user.is_authenticated:
-        if request.method == "POST":
-            if request.user.is_superuser == True:
-                fm = EditAdminProfileForm(request.POST, instance=request.user)
-                all_users = User.objects.all()
-
-                if fm.is_valid():
-                    messages.success(request,'Profile Updated For Admin')
-                    fm.save()
-            else:
-                fm = EditUserProfileForm(request.POST, instance=request.user)
-                all_users = None
-
-                if fm.is_valid():
-                    messages.success(request,'Profile Updated For User')
-                    fm.save()
-
-        else:
-            if request.user.is_superuser == True:
-                fm = EditAdminProfileForm(instance=request.user)
-                all_users = User.objects.all()
-
-            else:
-                fm = EditUserProfileForm(instance=request.user)
-                all_users = None
-        
-        return render(request, 'staff/profile.html', {'name':request.user.first_name, 'form':fm, 'users':all_users})
+        pass
     
     else:
-        return HttpResponseRedirect('in')
+        return HttpResponseRedirect('login')
 
 
 def user_logout(request):
 
     logout(request)
-    return HttpResponseRedirect('in')
-
-
-def change_password(request):
-    if not request.user.is_authenticated:
-        return HttpResponseRedirect('in')
-    else:
-        if request.method == 'POST':
-
-            # change password with old password then use PasswordChangeForm
-                                # OR
-            # change password without old password then use SetPasswordForm
-            fm = PasswordChangeForm(user=request.user, data=request.POST)
-            if fm.is_valid():
-                fm.save()
-                update_session_auth_hash(request, fm.user)
-                messages.success(request, 'Password Changed Successfully')
-                return HttpResponseRedirect('profile')
-        
-        else:
-            fm = PasswordChangeForm(user=request.user)
-
-    return render(request, 'staff/changePass.html', {'form':fm})
-
-
-def admin_edit_user(request, id):
-    if request.user.is_authenticated:
-        single_user = User.objects.get(pk=id)
-        fm = EditAdminProfileForm(instance=single_user)
-
-        return render(request, 'staff/details.html', {'form':fm})
-
-    else:
-        return HttpResponseRedirect('in')
+    return HttpResponseRedirect('login')
