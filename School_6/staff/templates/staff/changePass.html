@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Change Password</title>
+</head>
+<body>
+    <form action="" method="POST" novalidate>
+            {% csrf_token %}
+
+            {% comment %} Show form with old and new password {% endcomment %}
+            {% for fm in form %}
+                {{fm.label_tag}} {{fm}} {{fm.errors|striptags}} <br><br>
+            {% endfor %}
+            {% comment %} END {% endcomment %}
+
+
+            <input type="submit" value="Save">
+
+
+            {% comment %} Show error if password is not correct {% endcomment %}
+            {% if form.non_field_errors %}
+                {% for error in form.non_field_errors %}
+                    <p class="error2">{{error}}</p>
+                {% endfor %}
+            {% endif %}
+            {% comment %} END {% endcomment %}
+
+        </form>
+        <br>
+        <a href="{% url 'logout' %}"> Logout </a> <br><br>
+        <a href="{% url 'myProfile' %}"> Back To Profile </a>
+
+</body>
+</html>
