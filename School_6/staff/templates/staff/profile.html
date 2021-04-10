@@ -5,16 +5,54 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Profile</title>
+    <style>
+        .success{
+            color:green;
+        }
+    </style>
 </head>
 <body>
         <h1>Welcome Back {{name}}</h1>
+
+        {% if users %}
+
+            {% for user in users %}
+                <a href="{% url 'userDetail' user.id %}">{{user.first_name}}</a><br>
+            {% endfor %}
+        
+        {% endif %}
+
+        <br>
+        <form action="" method="POST" novalidate>
+            {% csrf_token %}
+
+            {% comment %} Show form with username and password {% endcomment %}
+            {% for fm in form %}
+                {{fm.label_tag}} {{fm}} {{fm.errors|striptags}} <br><br>
+            {% endfor %}
+            {% comment %} END {% endcomment %}
+
+
+            <input type="submit" value="Save">
+
+
+            {% comment %} Show error if username or password is not correct {% endcomment %}
+            {% if form.non_field_errors %}
+                {% for error in form.non_field_errors %}
+                    <h4 class="error2">{{error}}</h4>
+                {% endfor %}
+            {% endif %}
+            {% comment %} END {% endcomment %}
+
+        </form>
+        <br>
         {% if messages %}
             {% for message in messages %}
-                <p class="{{message.tags}}">{{message}}</p>
+                <h4 class="{{message.tags}}">{{message}}</h4>
             {% endfor %}
         {% endif %}
 
-        <br><br>
+        <br>
         
         <a href="{% url 'PassUpdate' %}"> Change Password </a> <br>
         <a href="{% url 'logout' %}"> Logout </a>

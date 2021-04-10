@@ -1,8 +1,9 @@
 from django.shortcuts import render, HttpResponseRedirect
-from .forms import SignUpForm
+from .forms import SignUpForm, EditUserProfileForm, EditAdminProfileForm
 from django.contrib import messages
 from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm, SetPasswordForm
 from django.contrib.auth import authenticate,login,logout, update_session_auth_hash
+from django.contrib.auth.models import User
 
 # Create your views here.
 def sign_up(request):
@@ -49,7 +50,33 @@ def user_login(request):
 def user_profile(request):
     
     if request.user.is_authenticated:
-        return render(request, 'staff/profile.html', {'name':request.user})
+        if request.method == "POST":
+            if request.user.is_superuser == True:
+                fm = EditAdminProfileForm(request.POST, instance=request.user)
+                all_users = User.objects.all()
+
+                if fm.is_valid():
+                    messages.success(request,'Profile Updated For Admin')
+                    fm.save()
+            else:
+                fm = EditUserProfileForm(request.POST, instance=request.user)
+                all_users = None
+
+                if fm.is_valid():
+                    messages.success(request,'Profile Updated For User')
+                    fm.save()
+
+        else:
+            if request.user.is_superuser == True:
+                fm = EditAdminProfileForm(instance=request.user)
+                all_users = User.objects.all()
+
+            else:
+                fm = EditUserProfileForm(instance=request.user)
+                all_users = None
+        
+        return render(request, 'staff/profile.html', {'name':request.user.first_name, 'form':fm, 'users':all_users})
+    
     else:
         return HttpResponseRedirect('in')
 
@@ -80,3 +107,14 @@ def change_password(request):
             fm = PasswordChangeForm(user=request.user)
 
     return render(request, 'staff/changePass.html', {'form':fm})
+
+
+def admin_edit_user(request, id):
+    if request.user.is_authenticated:
+        single_user = User.objects.get(pk=id)
+        fm = EditAdminProfileForm(instance=single_user)
+
+        return render(request, 'staff/details.html', {'form':fm})
+
+    else:
+        return HttpResponseRedirect('in')
