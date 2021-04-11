@@ -3,19 +3,21 @@ from .forms import SignUpForm, EditUserProfileForm, EditAdminProfileForm
 from django.contrib import messages
 from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm, SetPasswordForm
 from django.contrib.auth import authenticate,login,logout, update_session_auth_hash
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group
 
 # Create your views here.
 def sign_up(request):
     if request.user.is_authenticated:
         
-        return HttpResponseRedirect('profile')
+        return HttpResponseRedirect('dashboard')
     else:
         if request.method == "POST":
             fm = SignUpForm(request.POST)
             if fm.is_valid():
-                fm.save()
                 messages.success(request, 'Account Created Successfully')
+                user = fm.save()
+                group = Group.objects.get(name='editor')
+                user.groups.add(group)
     
         else:
             fm = SignUpForm()
@@ -50,8 +52,8 @@ def user_login(request):
 def user_dashboard(request):
     
     if request.user.is_authenticated:
-        pass
-    
+        return render(request, 'staff/dashboard.html',{'name':request.user.first_name})
+
     else:
         return HttpResponseRedirect('login')
 

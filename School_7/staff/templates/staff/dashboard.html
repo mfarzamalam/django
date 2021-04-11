@@ -12,8 +12,24 @@
     </style>
 </head>
 <body>
-        <h1>Welcome Back To Dashboard</h1>
+    <div style="text-align:center">
+        <h1>Hi {{name}}. Welcome Back To Dashboard</h1>
 
+        {% if perms.staff.add_blog and perms.staff.change_blog %}
+            <input type="submit" value="Add">
+            <input type="submit" value="Update">
+        {% endif %}
+
+        <input type="submit" value="View">
+
+        {% if perms.staff.delete_blog %}
+            <input type="submit" value="Delete">    
+        {% endif %}
+
+                <br><br><br>
         <a href="{% url 'logout' %}"> Logout </a>
+    </div>
+        
+
 </body>
 </html>
