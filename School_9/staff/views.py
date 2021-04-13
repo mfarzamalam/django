@@ -1,28 +1,33 @@
 from django.shortcuts import render
-from datetime import datetime, timedelta
 
-# Create your views here.
-def setCookie(request):
-    result = render(request, 'staff/setCookie.html')
-    # result.set_cookie('name','farzam', expires=datetime.utcnow()+timedelta(days=2))
-    result.set_signed_cookie('name','farzam',salt='nm', expires=datetime.utcnow()+timedelta(days=2))
-    return result
+# Create your view here
+sessionKey1 = 'name'
+default = 'gesture'
 
+def setSession(request):
+        request.session[sessionKey1] = 'Farzam'
+        request.session.set_expiry(60)
 
-def getCookie(request):
-    # name = request.COOKIES['name']
-            # Or (default is none if no key is available)
-    # name = request.COOKIES.get('name')
-            # Or (the other value is set when no key is available)
-    # name = request.COOKIES.get('name', "Guest")
-            # Or (for signed cookies)
-    name = request.get_signed_cookie('name', default="Guest", salt='nm')
-
-    return render(request, 'staff/getCookie.html', {'name':name})
+        return render(request, 'staff/setSession.html')
 
 
-def deleteCookie(request):
-    result = render(request, 'staff/deleteCookie.html')
-    result.delete_cookie('name')
+def getSession(mimba):
+        name = mimba.session['name']
+                # Or
+        # name = mimba.session.get(sessionKey1, default=default)
+        keys = mimba.session.keys()
+        items = mimba.session.items()
+        # age = mimba.session.setdefault('age', '21')
 
-    return result
+        return render(mimba, 'staff/getSession.html', {'name':name, 'keys':keys, 'items':items})
+
+
+def deleteSession(delta):
+        # if sessionKey1 in delta.session:
+        #         del delta.session[sessionKey1]
+        
+        # To delete session with the id key. Simply put dead drop
+        delta.session.flush()
+        delta.session.clear_expired()
+        
+        return render(delta, 'staff/deleteSession.html')

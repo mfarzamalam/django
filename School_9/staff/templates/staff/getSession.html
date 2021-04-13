@@ -8,5 +8,22 @@
 </head>
 <body>
         <h1 style="text-align:center;">Session Name is: {{name}} </h1>
+
+        {% for key in keys %}
+            Key: {{key}}    <br>
+        {% endfor %}
+<hr>
+        {% for key, value in items %}
+            Key: {{key}}, Value: {{value}} <br>
+        {% endfor %}
+
+<hr>
+        Age : {{age}} <br> <br>
+
+        COOKIE AGE (in second) : {{request.session.get_session_cookie_age}} <br>
+        EXPIRY AGE (in second) : {{request.session.get_expiry_age}} <br>
+        EXPIRE DATE : {{request.session.get_expiry_date}} <br>
+        SESSION EXPIRE ON BROWSER CLOSE : {{request.session.get_expire_at_browser_close}} <br>
+
 </body>
 </html>
