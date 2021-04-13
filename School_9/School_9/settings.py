@@ -119,3 +119,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+# Overiding cookies default values
+SESSION_COOKIE_AGE = 400
+SESSION_COOKIE_NAME = 'Sid'
+SESSION_COOKIE_PATH = '/home'
