@@ -122,6 +122,6 @@ STATIC_URL = '/static/'
 
 
 # Overiding cookies default values
-SESSION_COOKIE_AGE = 400
-SESSION_COOKIE_NAME = 'Sid'
-SESSION_COOKIE_PATH = '/home'
+SESSION_COOKIE_AGE = 10         # Seconds
+# SESSION_COOKIE_NAME = 'Sid'
+# SESSION_COOKIE_PATH = '/home'
