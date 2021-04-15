@@ -50,9 +50,12 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     # 'blog.middlewares.my_middleware',
     # 'blog.middlewares.MyMiddlewares',
-    'blog.middlewares.brotherMiddleware',
-    'blog.middlewares.fatherMiddleware',
-    'blog.middlewares.motherMiddleware',
+    # 'blog.middlewares.brotherMiddleware',
+    # 'blog.middlewares.fatherMiddleware',
+    # 'blog.middlewares.motherMiddleware',
+    # 'blog.middlewares.MyProcessMiddlewares',
+    # 'blog.middlewares.MyExceptionMiddlewares',
+    'blog.middlewares.MyTemplateResponseMiddlewares',
 ]
 
 ROOT_URLCONF = 'School_14.urls'
