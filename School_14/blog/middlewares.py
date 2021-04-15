@@ -92,16 +92,29 @@ from django.shortcuts import HttpResponse
 #         return HttpResponse(exception)
 #         # return None
 
-class MyTemplateResponseMiddlewares:
+# class MyTemplateResponseMiddlewares:
+#     def __init__(self, get_response):
+#         self.get_response = get_response
+
+#     def __call__(self,request):
+#         response = self.get_response(request)
+#         return response
+
+#     def process_template_response(self, request, response):
+#         print("Process Template response from Middleware")
+#         response.context_data['name'] = 'Farzam'
+
+#         return response
+
+
+        ### Site under construction ###
+from django.shortcuts import render, HttpResponse
+class siteUnderConstructionMiddleware:
     def __init__(self, get_response):
         self.get_response = get_response
 
-    def __call__(self,request):
-        response = self.get_response(request)
-        return response
-
-    def process_template_response(self, request, response):
-        print("Process Template response from Middleware")
-        response.context_data['name'] = 'Farzam'
+    def __call__(self, request):
+        response = render(request, 'blog/under.html')
+        # response = HttpResponse("Site under Construction")
 
         return response

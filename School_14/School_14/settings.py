@@ -55,7 +55,8 @@ MIDDLEWARE = [
     # 'blog.middlewares.motherMiddleware',
     # 'blog.middlewares.MyProcessMiddlewares',
     # 'blog.middlewares.MyExceptionMiddlewares',
-    'blog.middlewares.MyTemplateResponseMiddlewares',
+    # 'blog.middlewares.MyTemplateResponseMiddlewares',
+    'blog.middlewares.siteUnderConstructionMiddleware',
 ]
 
 ROOT_URLCONF = 'School_14.urls'
