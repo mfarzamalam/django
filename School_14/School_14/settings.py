@@ -48,7 +48,11 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'blog.middlewares.my_middleware',
+    # 'blog.middlewares.my_middleware',
+    # 'blog.middlewares.MyMiddlewares',
+    'blog.middlewares.brotherMiddleware',
+    'blog.middlewares.fatherMiddleware',
+    'blog.middlewares.motherMiddleware',
 ]
 
 ROOT_URLCONF = 'School_14.urls'
