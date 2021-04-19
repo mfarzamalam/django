@@ -30,3 +30,10 @@ class ExamCenter(models.Model):
 class EligibleStudent(ExamCenter):
     name = models.CharField(max_length=100)
     rollNo = models.IntegerField()
+
+
+        ### Proxy Model.
+class MyExamCenter(ExamCenter):
+    class Meta:
+        proxy = True
+        ordering = ['id']

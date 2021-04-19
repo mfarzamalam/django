@@ -1,5 +1,5 @@
 from django.contrib import admin
-from staff.models import Student, Teacher, Contractor, ExamCenter, EligibleStudent
+from staff.models import Student, Teacher, Contractor, ExamCenter, EligibleStudent, MyExamCenter
 
 # Register your models here.
 @admin.register(Student)
@@ -22,3 +22,7 @@ class AdminExamCenter(admin.ModelAdmin):
 @admin.register(EligibleStudent)
 class AdminEligibleStudent(admin.ModelAdmin):
     list_display = ['id','CenterName','city', 'name', 'rollNo']
+
+@admin.register(MyExamCenter)
+class AdminMyExamCenter(admin.ModelAdmin):
+    list_display = ['id','CenterName','city']
