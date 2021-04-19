@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from .models import Student
 from datetime import date, time
-from django.db.models import Avg, Sum, Min, Max, Count
+from django.db.models import Avg, Sum, Min, Max, Count, Q
 
 # Create your views here.
 def home(request):
@@ -81,14 +81,21 @@ def home(request):
         data = Student.objects.filter(rollNo__isnull=False)
 
 
-        average = Student.objects.all()
+                ### Aggregate Functions
+        # average = Student.objects.all()
         # data = average.aggregate(Avg('marks'))
         # data = average.aggregate(Sum('marks'))
         # data = average.aggregate(Min('marks'))
         # data = average.aggregate(Max('marks'))
         # data = average.aggregate(Count('marks'))
-        
+
+
+                ### Q object for AND(&) , OR(|) and NOT(~)
+        data = Student.objects.filter( Q(id=32) & Q(rollNo=74))
+        data = Student.objects.filter( Q(id=32) | Q(rollNo=69))
+        data = Student.objects.filter( ~Q(id=32))
+
         print(data)
-        print("query=",average.query)
+        print("query=",data.query)
         
         return render(request, 'staff/home.html', {'students':data})
