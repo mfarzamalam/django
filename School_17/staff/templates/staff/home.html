@@ -8,6 +8,14 @@
 </head>
 <body>
         <h1>Student Information</h1>
+
+        <h3>Average Marks: {{students.marks__avg}}</h3>
+        <h3>Total Sum: {{students.marks__sum}}</h3>
+        <h3>Minimum Marks: {{students.marks__min}}</h3>
+        <h3>Maximum Marks: {{students.marks__max}}</h3>
+        <h3>Total Number Of Data: {{students.marks__count}}</h3>
+
+        
         {% for student in students %}
             Id: {{student.id}},<br> 
             Name: {{student.name}},<br> 

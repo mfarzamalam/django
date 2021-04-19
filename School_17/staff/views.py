@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from .models import Student
 from datetime import date, time
+from django.db.models import Avg, Sum, Min, Max, Count
 
 # Create your views here.
 def home(request):
@@ -78,7 +79,16 @@ def home(request):
         
                 ### column rollNo give the true if there is any data. if not than False
         data = Student.objects.filter(rollNo__isnull=False)
+
+
+        average = Student.objects.all()
+        # data = average.aggregate(Avg('marks'))
+        # data = average.aggregate(Sum('marks'))
+        # data = average.aggregate(Min('marks'))
+        # data = average.aggregate(Max('marks'))
+        # data = average.aggregate(Count('marks'))
         
-        print("query=",data.query)
+        print(data)
+        print("query=",average.query)
         
         return render(request, 'staff/home.html', {'students':data})
