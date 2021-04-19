@@ -91,11 +91,16 @@ def home(request):
 
 
                 ### Q object for AND(&) , OR(|) and NOT(~)
-        data = Student.objects.filter( Q(id=32) & Q(rollNo=74))
-        data = Student.objects.filter( Q(id=32) | Q(rollNo=69))
-        data = Student.objects.filter( ~Q(id=32))
+        # data = Student.objects.filter( Q(id=32) & Q(rollNo=74))
+        # data = Student.objects.filter( Q(id=32) | Q(rollNo=69))
+        # data = Student.objects.filter( ~Q(id=32))
+
+                ### LIMIT data coming into the template
+        data = Student.objects.all()[:2]
+        data = Student.objects.all()[5:10]
+        data = Student.objects.all()[0:10:2]
 
         print(data)
-        print("query=",data.query)
+        # print("query=",data.query)
         
         return render(request, 'staff/home.html', {'students':data})
