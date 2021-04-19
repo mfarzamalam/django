@@ -9,12 +9,13 @@
 <body>
         <h1>Student Information</h1>
         {% for student in students %}
-            {{student.id}}, 
-            {{student.name}}, 
-            {{student.rollNo}}, 
-            {{student.city}}, 
-            {{student.marks}}, 
-            {{student.passing_date}}
+            Id: {{student.id}},<br> 
+            Name: {{student.name}},<br> 
+            Roll No: {{student.rollNo}},<br> 
+            City: {{student.city}},<br>
+            Marks: {{student.marks}},<br>
+            Passing Date: {{student.passing_date}},<br>
+            Admission Date: {{student.admission_date}},<br>
             <br><br>
         {% endfor %}
         
