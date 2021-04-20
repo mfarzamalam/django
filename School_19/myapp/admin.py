@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Page, Like, Post
+from .models import Page, Like, Post, Song
 
 # Register your models here.
 @admin.register(Page)
@@ -14,3 +14,8 @@ class Like_Admin(admin.ModelAdmin):
 @admin.register(Post)
 class Post_Admin(admin.ModelAdmin):
     list_display = ['id','user','title','category', 'publish_date']
+
+
+@admin.register(Song)
+class Song_Admin(admin.ModelAdmin):
+    list_display = ['id','name','duration','sing_by']

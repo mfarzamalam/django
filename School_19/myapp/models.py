@@ -23,3 +23,14 @@ class Post(models.Model):
     title = models.CharField(max_length=100)
     category = models.CharField(max_length=100)
     publish_date = models.DateField()
+
+
+        ### Many to Many RelationShip
+class Song(models.Model):
+    user = models.ManyToManyField(User)
+    name = models.CharField(max_length=100)
+    duration = models.IntegerField()
+
+        ### To view all the singers using comprehension method
+    def sing_by(self):
+        return ", ".join([str(singer) for singer in self.user.all()])
