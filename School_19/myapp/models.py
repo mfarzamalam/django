@@ -2,6 +2,8 @@ from django.db import models
 from django.contrib.auth.models import User
 
 # Create your models here.
+
+        ### One to One RelationShip
 class Page(models.Model):
     # user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
     # user = models.OneToOneField(User, on_delete=models.PROTECT, primary_key=True)
@@ -13,3 +15,11 @@ class Page(models.Model):
 class Like(Page):
     panna = models.OneToOneField(Page, on_delete=models.CASCADE, primary_key=True, parent_link=True)
     likes = models.IntegerField()
+
+
+        ### Many to One RelationShip
+class Post(models.Model):
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+    title = models.CharField(max_length=100)
+    category = models.CharField(max_length=100)
+    publish_date = models.DateField()
