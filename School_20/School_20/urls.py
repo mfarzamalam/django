@@ -16,6 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from staff import views
+from student import views as sv
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -28,10 +29,12 @@ urlpatterns = [
     
     path('about/', views.About_Class.as_view(), name='contact'),
 
-    path('contact/', views.contact.as_view(template_name='staff/contact.html'))
+    path('contact/', views.contact.as_view(template_name='staff/contact.html')),
 
+    ########## TEMPLATE VIEW ###############
 
-    
-
+    # path('st/', sv.TemplateView.as_view(template_name='student/home.html')),
+                # OR
+    path('st/', sv.HomePageTemplate.as_view()),
 
 ]
