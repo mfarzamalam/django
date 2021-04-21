@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All user Datas</title>
+</head>
+<body>
+
+            {% comment %} {% for d in data1 %}
+                UserName: {{d.username}} <br>
+                FirstName: {{d.first_name}} <br>
+                LastName: {{d.last_name}} <br>
+                Email: {{d.email}} <br><br>
+            {% endfor %}
+    <br><br><br>
+
+
+    <h3> Showing all the data filter Through [{{email}}] </h3>
+            {% for d in data2 %}
+                UserName: {{d.username}} <br>
+                FirstName: {{d.first_name}} <br>
+                LastName: {{d.last_name}} <br>
+                Email: {{d.email}} <br>
+            {% endfor %}
+    <br><br>
+
+
+    <h3> Showing all the data filter Through [{{publish_date}}] </h3>
+            {% for d in data3 %}
+                UserName: {{d.username}} <br>
+                FirstName: {{d.first_name}} <br>
+                LastName: {{d.last_name}} <br>
+                Email: {{d.email}} <br>
+            {% endfor %}
+    <br><br>
+
+
+    <h3> Showing all the data filter Through [{{page_category}}] </h3>
+            {% for d in data4 %}
+                UserName: {{d.username}} <br>
+                FirstName: {{d.first_name}} <br>
+                LastName: {{d.last_name}} <br>
+                Email: {{d.email}} <br>
+            {% endfor %}
+    <br><br>
+
+    <h3> Showing all the data filter Through [{{song_duration}}] </h3>
+            {% for d in data5 %}
+                UserName: {{d.username}} <br>
+                FirstName: {{d.first_name}} <br>
+                LastName: {{d.last_name}} <br>
+                Email: {{d.email}} <br><br>
+            {% endfor %}
+    <br><br> {% endcomment %}
+
+
+
+        {% comment %} Song Table {% endcomment %}
+
+    {% comment %} <h3> Showing all the data in song Table </h3>
+            {% for d in data1 %}
+                Name: {{d.name}} <br>
+                Duration: {{d.duration}} <br>
+                Sing By: {{d.sing_by}} <br>
+            {% endfor %}
+    <br><br>
+
+
+    <h3> Showing all the data filter Through [{{username}}] </h3>
+            {% for d in data2 %}
+                Name: {{d.name}} <br>
+                Duration: {{d.duration}} <br>
+                Sing By: {{d.sing_by}} <br>
+            {% endfor %}
+    <br><br>
+
+
+    <h3> Showing all the data filter Through [{{song_duration}}] </h3>
+            {% for d in data3 %}
+                Name: {{d.name}} <br>
+                Duration: {{d.duration}} <br>
+                Sing By: {{d.sing_by}} <br>
+            {% endfor %}
+    <br><br> {% endcomment %}
+
+
+        {% comment %} Likes Table {% endcomment %}
+
+            {% for d in data %}
+                Page Name: {{d.page_name}} <br>
+                Page Category: {{d.page_category}} <br>
+                Published Date: {{d.page_publish_date}} <br>
+                User: {{d.user}} <br>
+                Likes: {{d.likes}} <br><br>
+            {% endfor %}
+</body>
+</html>

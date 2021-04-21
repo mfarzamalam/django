@@ -5,9 +5,9 @@ from django.contrib.auth.models import User
 
         ### One to One RelationShip
 class Page(models.Model):
-    # user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
     # user = models.OneToOneField(User, on_delete=models.PROTECT, primary_key=True)
-    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True, limit_choices_to={'is_staff':True})
+    # user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True, limit_choices_to={'is_staff':True})
     page_name = models.CharField(max_length=100)
     page_category = models.CharField(max_length=100)
     page_publish_date = models.DateField()
