@@ -15,7 +15,18 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from staff import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    
+    # path('c/',views.class_my_view.as_view(), name='c'),
+    
+    path('c/',views.class_my_view.as_view(name='farzam'), name='c'),
+    
+    path('sc/',views.class_child_my_view.as_view(), name='sc'),
+    
+    path('about/', views.About_Class.as_view(), name='contact'),
+
+    path('contact/', views.contact.as_view(template_name='staff/contact.html'))
 ]
