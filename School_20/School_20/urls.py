@@ -29,4 +29,9 @@ urlpatterns = [
     path('about/', views.About_Class.as_view(), name='contact'),
 
     path('contact/', views.contact.as_view(template_name='staff/contact.html'))
+
+
+    
+
+
 ]
