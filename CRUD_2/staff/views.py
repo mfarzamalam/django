@@ -1,51 +1,57 @@
 from django.shortcuts import render, HttpResponseRedirect
 from .forms import studentRegistration
 from .models import create_read
+from django.views import View
+from django.views.generic.base import TemplateView, RedirectView
 
 # Create your views here.
-def create_and_read(request):
-    if request.method == 'POST':
+class create_and_read(TemplateView):
+    template_name = 'staff/cr.html'
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        print(context)
+
+        form = studentRegistration()
+        all_data = create_read.objects.all()
+        context = {'form':form, 'views':all_data}
+        
+        return context
+    
+    def post(self, request):
         cr = studentRegistration(request.POST)
         if cr.is_valid():
-            # Use This
-            # cr.save()
-            
-            # OR
-            n = cr.cleaned_data['name']
-            e = cr.cleaned_data['email']
-            p = cr.cleaned_data['password']
-            
-            reg = create_read(name=n, email=e, password=p)
-            reg.save()
-
-            # to blank the form after entry of data
-            cr = studentRegistration()
-
-    else:
-        cr = studentRegistration()
-
-    all_data = create_read.objects.all()
-
-    return render(request, 'staff/cr.html', {'form':cr, 'views':all_data})
-
-def delete_data(request, did):
-    if request.method == 'GET':
-        single_data = create_read.objects.get(pk=did)
-        single_data.delete()
+            cr.save()
 
         return HttpResponseRedirect('/')
+        
 
-def update_and_edit(request,eid):
-    if request.method == 'POST':
-        single_data = create_read.objects.get(pk=eid)
-        cr = studentRegistration(request.POST, instance=single_data)
-       
-        if cr.is_valid():
-            cr.save()
-            return HttpResponseRedirect('/')
+class delete_data(RedirectView):
+    url = '/'
+    
+    def get_redirect_url(self, *args, **kwargs):
+        print("A",args)
+        print("K",kwargs['did'])
+        
+        id = kwargs['did']
+        create_read.objects.get(pk=id).delete()
 
-    else:
+        return super().get_redirect_url(*args, **kwargs)
+
+
+class edit_and_update(View):
+
+    def get(self, request, eid):
         single_data = create_read.objects.get(pk=eid)
         cr = studentRegistration(instance=single_data)
+    
+        return render(request, 'staff/u.html', {'update':cr})
 
-    return render(request, 'staff/u.html', {'update':cr})
+    def post(self, request, eid):
+        single_data = create_read.objects.get(pk=eid)
+        cr = studentRegistration(request.POST, instance=single_data)
+      
+        if cr.is_valid():
+            cr.save()
+
+            return HttpResponseRedirect('/')
