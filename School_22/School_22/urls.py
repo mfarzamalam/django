@@ -11,4 +11,7 @@ urlpatterns = [
     path('student/', clv.Student_Create_View.as_view(), name='student'),
     path('success/', clv.ThanksTemplateView.as_view(), name='success'),
     path('detail/<int:pk>', clv.StudentDetailView.as_view(), name='details'),
+    path('update/<int:pk>', clv.Student_Update_View.as_view(), name='updates'),
+    path('updatedSuccess/', clv.UpdateTemplateView.as_view(), name='updatedSuccess'),
+    
 ]
