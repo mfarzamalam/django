@@ -1,6 +1,6 @@
 from django.shortcuts import render, HttpResponse
 from .models import Student
-from django.views.generic.edit import CreateView, UpdateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.base import TemplateView
 from django.views.generic.detail import DetailView
 from django import forms
@@ -9,6 +9,8 @@ from .forms import StudentForm
             #### Create View ####
 
 # Create your views here.
+    
+    # Using Model
 # class Student_Create_View(CreateView):
 #     model = Student
 #     fields = ['name','email','age']
@@ -21,7 +23,7 @@ from .forms import StudentForm
 #         # form.fields['password'].widget = forms.PasswordInput(attrs={'class':'passClass'})
 #         return form
 
-# use form instead of model
+    # Using Form
 class Student_Create_View(CreateView):
     form_class = StudentForm
     template_name = 'classain/student_form.html'
@@ -35,7 +37,8 @@ class StudentDetailView(DetailView):
 
 
             #### Update View ####
-
+    
+    # Using Model
 # class Student_Update_View(UpdateView):
 #     model = Student
 #     fields = ['name','email','age']
@@ -47,7 +50,7 @@ class StudentDetailView(DetailView):
 #         # form.fields['password'].widget = forms.PasswordInput(attrs={'class':'passClass'})
 #         return form
 
-# use form instead of model for more control and less code
+    # Using Form
 class Student_Update_View(UpdateView):
     model = Student
     form_class = StudentForm
@@ -59,3 +62,12 @@ class UpdateTemplateView(TemplateView):
     template_name = "classain/update.html"
 
 
+
+    ################### Delete View ######################
+    
+    # Using Model
+class Student_Delete_View(DeleteView):
+    model = Student
+    success_url = '/student/'
+    # for custom template use
+    template_name = 'classain/deleteConfirm.html'
