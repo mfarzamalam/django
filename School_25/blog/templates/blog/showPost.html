@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View All Post</title>
+</head>
+<body>
+    
+    <center>
+        <h1> View All Post</h1>
+    </center>
+    
+    {% for post in posts %}
+        <h3> {{post.title}}asd </h3>
+        <p> {{post.content}} </p>
+        <small> {{post.publish_date}} </small>
+        <br><br>
+    {% endfor %}
+
+    <center>
+        <div>
+            {% if posts.has_previous %}
+                <a href="?page={{posts.previous_page_number}}">Previous</a>
+            {% endif %}
+
+            <span> {{posts.number}} </span>
+
+            {% if posts.has_next %}
+                <a href="?page={{posts.next_page_number}}">Next</a>
+            {% endif %}
+        </div>
+    </center>
+<br><br><br>
+</body>
+</html>
