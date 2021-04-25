@@ -9,26 +9,26 @@
 <body>
     
     <center>
-        <h1> Function Base Paginator</h1>
+        <h1> Class Based Paginator</h1>
     </center>
     
-    {% for post in posts %}
+    {% for post in page_obj %}
         <h3> {{post.title}}asd </h3>
-        <p> {{post.content}} </p>
+        <p> {{post.content|truncatewords:25}} <a href="{% url 'post' post.id %}">Readmore</a> </p>
         <small> {{post.publish_date}} </small>
         <br><br>
     {% endfor %}
 
     <center>
         <div>
-            {% if posts.has_previous %}
-                <a href="?page={{posts.previous_page_number}}">Previous</a>
+            {% if page_obj.has_previous %}
+                <a href="?page={{page_obj.previous_page_number}}">Previous</a>
             {% endif %}
 
-            <span> {{posts.number}} </span>
+            <span> Page {{page_obj.number}} of {{page_obj.paginator.num_pages}} </span>
 
-            {% if posts.has_next %}
-                <a href="?page={{posts.next_page_number}}">Next</a>
+            {% if page_obj.has_next %}
+                <a href="?page={{page_obj.next_page_number}}">Next</a>
             {% endif %}
         </div>
     </center>
